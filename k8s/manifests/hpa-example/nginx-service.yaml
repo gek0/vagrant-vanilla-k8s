@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-worker
+  namespace: hpa-test
+spec:
+  selector:
+    app: nginx-worker
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
