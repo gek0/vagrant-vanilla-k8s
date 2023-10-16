@@ -1,5 +1,8 @@
 # General
 .vagrant/
 
+# K8s generated files
+k8s/k8s-mb-cluster-admin-config.yaml
+
 # Log files (if you are creating logs in debug mode, uncomment this)
 # *.log
