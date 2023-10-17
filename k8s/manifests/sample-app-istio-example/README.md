@@ -12,7 +12,7 @@
 ### setup
 - apply ordering: namespace -> all other resources
 - add "192.168.56.51   sample-app.local.io" to your `/etc/hosts` file
-- run ` curl -i smple-app.io`
+- run ` curl -i sample-app.local.io`
   - sample respond:
 ```shell
 HTTP/1.1 200 OK

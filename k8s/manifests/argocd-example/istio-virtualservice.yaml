@@ -7,7 +7,7 @@ spec:
   hosts:
     - "argocd.local.io"
   gateways:
-    - istio-system/argocd-gateway
+    - istio-system/primary-gateway
   http:
     - route:
         - destination:
