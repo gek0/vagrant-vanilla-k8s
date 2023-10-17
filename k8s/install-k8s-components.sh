@@ -17,6 +17,7 @@ istioDir=$(find /opt -maxdepth 1 -name "istio*" -type d)
 ln -s $istioDir/bin/istioctl /usr/local/bin/
 echo "istioctl is ready at $(which istioctl)"
 istioctl install --skip-confirmation
+kubectl apply -f ${componentsDir}/istio/gateway.yaml
 
 ## install MetalLB (emulated network loadbalancer)
 ##  https://metallb.universe.tf/installation/
@@ -26,6 +27,5 @@ kubectl apply -f - -n kube-system
 
 kubectl apply -f ${componentsDir}/metallb/metallb-native.yaml
 kubectl apply -f ${componentsDir}/metallb/configuration.yaml
-
 
 echo -e "\nall k8s components installed and ready"
