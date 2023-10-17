@@ -5,12 +5,12 @@ metadata:
   namespace: sample-app
 spec:
   hosts:
-    - "sample-app.io"
+    - "sample-app.local.io"
   gateways:
-    - istio-system/sample-app-gateway
+    - istio-system/primary-gateway
   http:
     - route:
         - destination:
-            host: sample-app.sample-app
+            host: sample-app.sample-app.svc.cluster.local
             port:
               number: 80

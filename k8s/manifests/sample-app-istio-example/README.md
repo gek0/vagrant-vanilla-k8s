@@ -7,12 +7,11 @@
   - Deployment
   - Service
   - Istio ingress configuration
-    - Gateway
     - VirtualService
 
 ### setup
-- apply ordering: namespace -> gateway -> all other resources
-- add "192.168.56.51   sample-app.io" to your `/etc/hosts` file
+- apply ordering: namespace -> all other resources
+- add "192.168.56.51   sample-app.local.io" to your `/etc/hosts` file
 - run ` curl -i smple-app.io`
   - sample respond:
 ```shell
