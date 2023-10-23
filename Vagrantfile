@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 Vagrant.configure("2") do |config|
   # nodes count
-  WorkerNodeCount = 2
+  WorkerNodeCount = 3
 
   # master node
   config.vm.define "master-node" do |master|
