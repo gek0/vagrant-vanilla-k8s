@@ -1,4 +1,5 @@
 # Vanilla K8s in Vagrant
+![vag](https://github.com/gek0/vagrant-vanilla-k8s/assets/8794964/187cf698-ebfb-4dec-8d09-3582fb0ca795)
 
 - latest K8s install (v1.28 at the time) using containerd runtime on Vagrant nodes
 
