@@ -10,6 +10,19 @@ metadata:
   name: webapp
   namespace: webapp
 ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: webapp
+  namespace: webapp
+spec:
+  selector:
+    app: webapp
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8000
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -30,12 +43,16 @@ spec:
       serviceAccountName: webapp
       containers:
         - name: app
-          image: hashieducation/simple-vault-client:latest
+          image: mburisa93/vault-webapp-example:1.0.0
           imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
           env:
             - name: VAULT_ADDR
-              value: 'http://vault:8200'
+              value: "http://vault.vault:8200"
             - name: JWT_PATH
-              value: '/var/run/secrets/kubernetes.io/serviceaccount/token'
-            - name: SERVICE_PORT
-              value: '8080'
+              value: "/var/run/secrets/kubernetes.io/serviceaccount/token"
+            - name: APP_NAME
+              value: "webapp"
+            - name: SECRET_PATH
+              value: "secret/data/webapp/config"

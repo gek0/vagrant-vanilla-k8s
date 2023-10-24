@@ -21,14 +21,14 @@ hashicorp/vault                         0.25.0          1.14.0          Official
 hashicorp/vault-secrets-operator        0.3.2           0.3.2           Official Vault Secrets Operator Chart
 ```
 
-### Create Persistentvolumes (PVs) and Persistentvolumeclaims (PVCs) manually
-`kubectl apply -f data-pv.yaml`
+### Create needed resources for Vault
+`kubectl apply -f vault-manifests.yaml`
  - as HostPath storage is not really supported for Vault and much else, so bind the manually on each Worker node
 
-### Install Vault resources
+### Install Vault
 `helm install vault hashicorp/vault --values helm-vault-raft-values.yaml`
  - after Pods are in **Pending** state, SSH to Worker nodes and run `sudo chmod -R 757 /tmp/vault` to fix permission issues
-
+ - for accessing Vault in browser follow the next sections
 
 ## Vault configuration
 
@@ -86,13 +86,21 @@ EOF`
         bound_service_account_namespaces=webapp \
         policies=webapp \
         ttl=24h`
+- enable Usage Metrics on Vault
+`vault write sys/internal/counters/config enabled=enable retention_months=12`
 - finally, exit the Vault cli
 `exit`
 
-## Create a sample application and test it out
-- apply manifest for Namespace, Service Account and Deployment
+## UI access
+- run `./patch-vault-service.sh` for exposing the service using Metallb
+- add "192.168.56.53   vault.local.io" to your `/etc/hosts` file
+- open http://vault.local.io in your browser and authenticate using the root token
+
+## Use a sample application and test it out
+- apply manifest for app deployment (to view the Python script and build parameters go to `webapp_build`)
 `kubectl apply -f webapp.yaml`
 - create a port-forward
-`kubectl port-forward -n webapp $(kubectl get pod -n webapp -l app=webapp -o jsonpath="{.items[0].metadata.name}") 8080:8080`
-- and test it
-`curl http://localhost:8080`
+`kubectl port-forward -n webapp service/webapp 8000:80`
+- and test it (or with a browser)
+`curl http://localhost:8000/get/env`
+  - on the bottom you'll see 2 variables fetched from Vault - `password` and `username` with values set previously in Vault directly :)
