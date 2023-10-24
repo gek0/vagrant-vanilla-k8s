@@ -5,7 +5,7 @@
 
 ## Vagrant part
 - run `vagrant up` in root directory to provision a single master Node (control-plane)
-  - by default 2 (two) worker Nodes will be provisioned (can be modified with `WorkerNodeCount` variable)
+  - by default 3 (three) worker Nodes will be provisioned (can be modified with `WorkerNodeCount` variable)
   - `master-provision.sh` is used to configure the control-plane node and `worker-provision.sh` for worker Nodes
   - **master-node** has needed tools + some additional testing/debugging tools and binaries for administrative work
 

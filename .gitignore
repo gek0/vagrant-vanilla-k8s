@@ -4,5 +4,8 @@
 # K8s generated files
 k8s/k8s-mb-cluster-admin-config.yaml
 
+# Hashicorp Vault keys
+k8s/manifests/hashicorp-vault/cluster-keys.json
+
 # Log files (if you are creating logs in debug mode, uncomment this)
 # *.log

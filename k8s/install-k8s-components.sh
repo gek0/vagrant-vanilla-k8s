@@ -4,7 +4,6 @@ set -e
 componentsDir="/root/k8s/components"
 
 ## install Flannel as CNI - custom fix for Vagrant included
-##  https://medium.com/@anilkreddyr/kubernetes-with-flannel-understanding-the-networking-part-2-78b53e5364c7
 kubectl apply -f ${componentsDir}/flannel/kube-flannel.yaml
 
 ## install Metrics Server - for HPA and VPA components

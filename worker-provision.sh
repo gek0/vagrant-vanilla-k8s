@@ -26,7 +26,7 @@ sudo sysctl --system
 
 sleep 1
 
-## install docker, kubelet, kubeadm and kubectl
+## install k8s components
 sudo apt-get update -y
 sudo apt install -y curl gnupg2 software-properties-common apt-transport-https ca-certificates
 sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmour -o /etc/apt/trusted.gpg.d/docker.gpg

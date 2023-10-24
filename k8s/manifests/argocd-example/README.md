@@ -18,4 +18,4 @@
 - run `kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d` to get the initial password
 
 ### sample application deployment with ArgoCD
-- apply resources in `sample-app` directory
+- apply resources in `sample-app` directory -> TODO / WIP
